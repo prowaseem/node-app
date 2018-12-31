@@ -1,22 +1,15 @@
 pipeline {
-  agent any
+  agent none
 
   stages {
-    stage('Build Stage') {
-      steps {
-        sh "echo 'Build completed'"
+    stage('Front-end') {
+      agent {
+        docker {
+          image: 'node:8-alpine'
+        }
       }
-    }
-
-    stage('Test Stage') {
       steps {
-        sh "echo 'Test completed'"
-      }
-    }
-
-    stage('Deploy stage') {
-      steps {
-        sh "echo 'Deployment completed'"
+        sh 'node --version'
       }
     }
   }
